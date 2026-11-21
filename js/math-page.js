@@ -8,8 +8,8 @@ import { $, escapeHtml, countChars, toast, setButtonLoading, beep, scrollToEleme
 import { loadMathQuestions, loadMathOutline, loadStructuredTemplates } from './data-loader.js';
 import { resolveMathBoard } from './template-store.js';
 import { createCountdown } from './timer.js';
-import { localTrialScore, normalizeResult, renderScoreCard } from './scoring.js';
-import { mountScoreChat } from './score-chat.js';
+import { localTrialScore, normalizeResult, renderScoreCard, snapshotResult } from './scoring.js';
+import { mountAskAi } from './ask-ai.js';
 import { isLlmConfigured, scoreTrial } from './llm.js';
 import { ensureSettingsDialog } from './settings.js';
 import { createRecorder, isRecordingSupported, isSpeechRecognitionSupported } from './recorder.js';
@@ -437,24 +437,26 @@ async function runScore() {
   const host = $('#score-card');
   host.innerHTML = renderScoreCard(result);
   host.classList.remove('hidden');
-  mountScoreChat(host, {
+  // 先把这条记录写进 IndexedDB，拿到 recordId 后再挂「去 AI 追问」入口
+  const recordId = await rememberAttempt(result, notes);
+  mountAskAi(host, {
     mode: 'trial',
     question: state.question,
     answer: notes,
-    result
+    result,
+    recordId
   });
   $('#score-status').textContent = usedAi
     ? images.length ? 'AI 读图评分完成' : 'AI 评分完成'
     : '本机规则评分（未接入 AI）';
   scrollToElement(host);
-  rememberAttempt(result, notes);
   state.scoring = false;
 }
 
-function rememberAttempt(result, notes) {
-  if (!state.question) return;
+async function rememberAttempt(result, notes) {
+  if (!state.question) return null;
   try {
-    void saveAttempt({
+    const recordId = await saveAttempt({
       mode: 'math',
       questionId: state.question.id,
       title: state.question.title || '',
@@ -464,16 +466,24 @@ function rememberAttempt(result, notes) {
       level: result.level,
       source: result.source,
       dimensions: (result.dimensions || []).map((item) => ({
-        key: item.key, name: item.name, score: item.score, max: item.max
-      }))
+        key: item.key,
+        name: item.name,
+        score: item.score,
+        max: item.max,
+        comment: String(item.comment || '').trim()
+      })),
+      // 考官点评：记录详情展示 + AI 追问页还原评分上下文
+      review: snapshotResult(result)
     });
     lastPractice.save({
       mode: 'math',
       id: state.question.id,
       title: state.question.title || ''
     });
+    return recordId;
   } catch (error) {
     console.warn('[math] 记录保存跳过', error);
+    return null;
   }
 }
 

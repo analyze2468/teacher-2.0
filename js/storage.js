@@ -158,6 +158,11 @@ export function idbAll(storeName) {
   return runTransaction(storeName, 'readonly', (store) => store.getAll());
 }
 
+/** 按主键读取单条记录（练习记录详情 / AI 追问页使用） */
+export function idbGet(storeName, id) {
+  return runTransaction(storeName, 'readonly', (store) => store.get(id));
+}
+
 /** 按主键删除 */
 export function idbDelete(storeName, id) {
   return runTransaction(storeName, 'readwrite', (store) => store.delete(id));

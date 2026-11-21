@@ -13,7 +13,7 @@
  * 路径全部使用相对于本文件的 './'，部署到 GitHub Pages 子目录（/repo/）时同样可用。
  */
 
-const CACHE_VERSION = 'v13';
+const CACHE_VERSION = 'v14';
 /**
  * 缓存前缀：2.0 使用 pb（practice-buddy）。
  * 「教资面试学习室」用的是 jzms-*，两个版本同域名/同端口打开时不会互相覆盖或清掉对方的缓存。
@@ -39,6 +39,7 @@ const CORE_ASSETS = [
   './select.html',
   './math.html',
   './records.html',
+  './ai-chat.html',
   './videos.html',
   './manifest.json',
 
@@ -69,6 +70,7 @@ const CORE_ASSETS = [
   './js/settings.js',
   './js/scoring.js',
   './js/score-chat.js',
+  './js/ask-ai.js',
   './js/followups.js',
   './js/structured-nav.js',
   './js/home.js',
@@ -79,6 +81,7 @@ const CORE_ASSETS = [
   './js/structured-list-page.js',
   './js/structured-page.js',
   './js/records-page.js',
+  './js/ai-chat.js',
   './js/videos-page.js',
 
   './data/structured-questions.json',

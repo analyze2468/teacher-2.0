@@ -101,6 +101,33 @@ export function normalizeResult(raw, rubric, type = 'structured') {
   };
 }
 
+/**
+ * 生成可直接落库的评分快照（考官点评记录）
+ * 练习记录详情页展示、AI 追问页还原评分上下文都从这里取，
+ * 只保留评分结果里真正有用的字段，避免把模型原始输出整段存进 IndexedDB。
+ */
+export function snapshotResult(result) {
+  if (!result || typeof result !== 'object') return null;
+  return {
+    total: clamp(Math.round(Number(result.total) || 0), 0, 100),
+    level: String(result.level || '').trim(),
+    source: result.source === 'ai' ? 'ai' : 'local',
+    model: String(result.model || '').trim(),
+    dimensions: (Array.isArray(result.dimensions) ? result.dimensions : []).map((item) => ({
+      key: String(item?.key || ''),
+      name: String(item?.name || ''),
+      score: Number(item?.score) || 0,
+      max: Number(item?.max) || 0,
+      comment: String(item?.comment || '').trim()
+    })),
+    highlights: toTextList(result.highlights, 6),
+    issues: toTextList(result.issues, 6),
+    tips: toTextList(result.tips, 6),
+    analysis: String(result.analysis || '').trim(),
+    referenceAnswer: String(result.referenceAnswer || '').trim()
+  };
+}
+
 /* ---------------- 本机规则评分（无 AI 时降级） ---------------- */
 
 const STRUCTURE_WORDS = ['第一', '第二', '第三', '首先', '其次', '再次', '最后', '一方面', '另一方面', '因此', '总之', '综上', '我认为', '我会'];

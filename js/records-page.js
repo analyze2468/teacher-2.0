@@ -88,6 +88,43 @@ function dimBar(dim) {
   </div>`;
 }
 
+/** 一条记录里的考官点评快照（早期记录没有这个字段） */
+function reviewOf(item) {
+  const review = item?.review;
+  return review && typeof review === 'object' ? review : null;
+}
+
+function textListOf(value) {
+  if (Array.isArray(value)) {
+    return value.map((entry) => String(entry ?? '').trim()).filter(Boolean).slice(0, 6);
+  }
+  if (typeof value === 'string' && value.trim()) return [value.trim()];
+  return [];
+}
+
+/** 单个维度的考官点评 */
+function dimComment(dim) {
+  const score = Number(dim?.score) || 0;
+  const max = Number(dim?.max) || 0;
+  return `<div class="rounded-lg bg-slate-50 px-2.5 py-1.5">
+    <p class="text-[11px] font-semibold text-slate-700">${escapeHtml(dim?.name || '维度')}
+      <span class="font-normal tabular-nums text-slate-400">${score}/${max}</span></p>
+    <p class="mt-0.5 whitespace-pre-wrap text-[11px] leading-relaxed text-slate-600">${escapeHtml(String(dim?.comment || '').trim())}</p>
+  </div>`;
+}
+
+/** 做得好的地方 / 需要改进 / 练习建议 列表 */
+function reviewBullets(title, items, tone, mark) {
+  if (!items.length) return '';
+  return `<div class="mt-2">
+    <p class="text-[10px] font-semibold text-slate-500">${escapeHtml(title)}</p>
+    <ul class="mt-1 space-y-1">${items.map((text) => `<li class="flex gap-1.5 text-[11px] leading-relaxed text-slate-600">
+      <span class="shrink-0 font-bold ${tone}">${mark}</span>
+      <span class="min-w-0">${escapeHtml(text)}</span>
+    </li>`).join('')}</ul>
+  </div>`;
+}
+
 /** 一条练习记录：分数徽章 + 题型/来源/时间 + 主要维度 + 可展开详情 */
 function recordCard(item, index) {
   const rawId = item?.id === undefined || item?.id === null ? '' : String(item.id);
@@ -109,6 +146,16 @@ function recordCard(item, index) {
   const secondary = headline === excerpt ? titleText : excerpt;
   const showSecondary = Boolean(secondary) && secondary !== headline;
   const answer = String(item?.answer || '').trim();
+  const answerChars = answer.replace(/\s+/g, '').length;
+  const review = reviewOf(item);
+  const reviewDims = Array.isArray(review?.dimensions) ? review.dimensions : [];
+  const dimComments = reviewDims.filter((dim) => String(dim?.comment || '').trim());
+  const reviewAnalysis = String(review?.analysis || '').trim();
+  const reviewTotal = Math.max(0, Math.min(100, Math.round(Number(review?.total ?? total) || 0)));
+  const reviewLevel = String(review?.level || '').trim() || label;
+  const reviewStyle = LEVEL_STYLE[reviewLevel] || style;
+  const reviewSource = (review?.source || item?.source) === 'ai' ? 'AI 评分' : '本机评分';
+  const reviewModel = String(review?.model || '').trim();
 
   const questionId = String(item?.questionId || '').trim();
   const redoHref = questionId
@@ -142,10 +189,35 @@ function recordCard(item, index) {
 
     <div id="${detailId}" class="mt-2 hidden space-y-2.5">
       ${dims.length > 3 ? `<div class="space-y-1.5">${dims.slice(3).map(dimBar).join('')}</div>` : ''}
-      ${answer ? `<div>
-        <p class="text-[11px] font-semibold text-slate-500">当时的作答</p>
-        <p class="mt-1 line-clamp-6 whitespace-pre-wrap rounded-xl bg-slate-50 p-2.5 text-[11px] leading-relaxed text-slate-600">${escapeHtml(answer)}</p>
-      </div>` : ''}
+      <div class="rounded-xl border border-slate-100 p-2.5">
+        <div class="flex items-center justify-between gap-2">
+          <p class="text-[11px] font-bold text-slate-700">我的答题内容</p>
+          ${answer ? `<span class="shrink-0 text-[10px] tabular-nums text-slate-400">${answerChars} 字</span>` : ''}
+        </div>
+        ${answer
+          ? `<p class="mt-1.5 max-h-56 overflow-y-auto whitespace-pre-wrap text-[11px] leading-relaxed text-slate-600">${escapeHtml(answer)}</p>`
+          : '<p class="mt-1.5 text-[11px] leading-relaxed text-slate-400">这条记录没有保存答题内容（早期版本只保存了得分）。</p>'}
+      </div>
+
+      <div class="rounded-xl border border-slate-100 p-2.5">
+        <p class="text-[11px] font-bold text-slate-700">考官点评记录</p>
+        ${review ? `
+          <div class="mt-1.5 flex flex-wrap items-center gap-1.5">
+            <span class="rounded-md ${reviewStyle} px-1.5 py-0.5 text-[10px] font-semibold">考官 ${reviewTotal} 分 · ${escapeHtml(reviewLevel)}</span>
+            <span class="rounded-md bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-600">${reviewSource}</span>
+            ${reviewModel ? `<span class="min-w-0 truncate text-[10px] text-slate-400">${escapeHtml(reviewModel)}</span>` : ''}
+          </div>
+          ${dimComments.length ? `<div class="mt-2 space-y-1.5">${dimComments.map(dimComment).join('')}</div>` : ''}
+          ${reviewAnalysis ? `<div class="mt-2 rounded-lg bg-slate-50 p-2">
+            <p class="text-[10px] font-semibold text-slate-500">整体解析</p>
+            <p class="mt-1 whitespace-pre-wrap text-[11px] leading-relaxed text-slate-600">${escapeHtml(reviewAnalysis)}</p>
+          </div>` : ''}
+          ${reviewBullets('做得好的地方', textListOf(review?.highlights), 'text-emerald-600', '✓')}
+          ${reviewBullets('需要改进的地方', textListOf(review?.issues), 'text-amber-600', '!')}
+          ${reviewBullets('下次练习建议', textListOf(review?.tips), 'text-brand-600', '→')}
+        ` : '<p class="mt-1.5 text-[11px] leading-relaxed text-slate-400">这条记录只保存了得分，没有考官点评（重做该题会保存新的点评记录）。</p>'}
+      </div>
+
       <div class="flex gap-2">
         ${redoHref ? `<a href="${redoHref}" class="flex h-9 flex-1 items-center justify-center rounded-xl border border-slate-200 bg-white text-[11px] font-bold text-slate-700 active:bg-slate-50">重做这道题</a>` : ''}
         <button type="button" data-del="${escapeHtml(rawId)}"
