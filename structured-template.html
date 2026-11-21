@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>答题模板 · 教资面试陪跑</title>
+  <link rel="stylesheet" href="assets/css/app.css" />
+  <script src="assets/vendor/tailwind-play.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <!-- PWA：可安装 + 离线（manifest / 图标；Service Worker 在 js/pwa.js 注册） -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <meta name="application-name" content="结构化面试 · 教资面试陪跑" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="教资面试陪跑" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+</head>
+<body class="min-h-screen bg-slate-50 pb-28">
+  <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3">
+      <a href="structured-hub.html" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 text-slate-600" aria-label="返回题型">‹</a>
+      <div class="min-w-0">
+        <h1 id="tpl-title" class="truncate text-sm font-bold text-slate-900">答题模板</h1>
+        <p id="tpl-sub" class="text-[11px] text-slate-500">加载中…</p>
+      </div>
+      <button type="button" data-open-settings class="ml-auto grid h-10 w-10 place-items-center rounded-xl border border-slate-200 text-slate-600" aria-label="AI 设置">⚙︎</button>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-4 pt-4">
+    <div id="type-switch" class="flex gap-2 overflow-x-auto pb-1 no-scrollbar" aria-label="切换题型"></div>
+
+    <section id="tpl-head" class="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span id="tpl-icon" class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-lg">📖</span>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 id="tpl-name" class="text-base font-bold text-slate-900">加载中…</h2>
+            <span id="tpl-source" class="pill pill-slate">内置模板</span>
+          </div>
+          <p id="tpl-short" class="mt-0.5 text-[11px] text-slate-500"></p>
+        </div>
+      </div>
+      <p id="tpl-summary" class="mt-3 text-xs leading-relaxed text-slate-600"></p>
+      <div id="tpl-keywords" class="mt-2 flex flex-wrap gap-1.5"></div>
+    </section>
+
+    <section class="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 class="text-sm font-bold text-slate-900">答题框架</h3>
+      <p class="mt-1 text-[11px] text-slate-400">按顺序说满 4 步，基本结构就稳了。</p>
+      <ol id="tpl-structure" class="mt-2 list-decimal space-y-1.5 pl-5 text-xs leading-relaxed text-slate-700"></ol>
+    </section>
+
+    <section class="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 class="text-sm font-bold text-slate-900">过渡句</h3>
+      <p class="mt-1 text-[11px] text-slate-400">开口卡住时直接用，先把话说顺。</p>
+      <ul id="tpl-phrases" class="mt-2 space-y-1.5 text-xs leading-relaxed text-slate-700"></ul>
+    </section>
+
+    <section class="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 class="text-sm font-bold text-slate-900">审题要点</h3>
+      <p class="mt-1 text-[11px] text-slate-400">看到题干先想这几点，避免答偏。</p>
+      <ul id="tpl-points" class="mt-2 list-disc space-y-1.5 pl-5 text-xs leading-relaxed text-slate-700"></ul>
+    </section>
+
+    <section class="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 class="text-sm font-bold text-slate-900">示范答案</h3>
+      <p class="mt-1 text-[11px] text-slate-400">重点是结构与说法，不要整段背。</p>
+      <div id="tpl-demo" class="mt-2 rounded-xl bg-slate-50 p-3 text-xs leading-relaxed text-slate-700"></div>
+    </section>
+
+    <section class="mt-3 rounded-2xl border border-rose-100 bg-rose-50/40 p-4">
+      <h3 class="text-sm font-bold text-rose-700">常见失分点</h3>
+      <ul id="tpl-pitfalls" class="mt-2 list-disc space-y-1.5 pl-5 text-xs leading-relaxed text-rose-600"></ul>
+    </section>
+
+    <section id="tpl-error" class="mt-3 hidden rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4 text-xs leading-relaxed text-rose-700">
+      <p id="tpl-error-text">没有找到这个题型的模板。</p>
+      <a href="structured-hub.html" class="mt-2.5 inline-block h-9 rounded-lg bg-rose-600 px-3 leading-9 text-xs font-bold text-white">回到题型列表</a>
+    </section>
+  </main>
+
+  <div class="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur" style="padding-bottom:calc(0.75rem + env(safe-area-inset-bottom));">
+    <div class="mx-auto flex max-w-3xl items-center gap-2">
+      <a id="btn-practice" href="structured-hub.html" class="flex h-12 flex-1 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white active:bg-brand-700">
+        开始刷这一类题 ›
+      </a>
+    </div>
+  </div>
+
+  <script type="module" src="js/structured-template-page.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

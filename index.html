@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070d" />
+  <meta name="color-scheme" content="dark" />
+  <title>教资面试陪跑 · 初中 &amp; 高中数学教资面试学习室</title>
+  <meta name="description" content="教资面试陪跑 2.0：结构化面试 + 初中/高中数学试讲，限时练习、六维/八维评分、AI 追问复盘。" />
+  <link rel="stylesheet" href="assets/css/app.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <meta name="application-name" content="教资面试陪跑" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="教资面试陪跑" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!--
+    首页是纯静态启动页：奔跑少年 / 跑道 / 光轨是同一张本地 JPEG（由人物参考图裁切生成，
+    已去掉文字与水印），不加载 React / three / WebGL，也没有 canvas。
+    动效只做两件事：首屏淡入（.landing__brand / .landing__cta / .landing__nav）与主按钮呼吸（.landing__start）。
+  -->
+  <link rel="preload" as="image" href="assets/img/landing-hero.jpg" fetchpriority="high" />
+</head>
+<body class="landing">
+  <!-- 底层：写实主视觉（人物 + 跑道 + 地面倒影）＋ 上下压暗 + 扫描纹理 -->
+  <div class="landing__stage">
+    <div
+      class="landing__poster"
+      role="img"
+      aria-label="跑道上的奔跑少年：白色短袖、深蓝运动短裤、白蓝跑鞋，脚下蓝色光带向前延伸，湿地面映出人物倒影"
+    >
+      <span class="landing__hero-edge" aria-hidden="true"><span class="landing__hero"></span></span>
+    </div>
+    <div class="landing__stage-veil" aria-hidden="true"></div>
+    <div class="landing__scanlines" aria-hidden="true"></div>
+  </div>
+
+  <!-- 扫描边框：细线圆角框 + 四角短刻线（纯装饰） -->
+  <div class="landing__frame" aria-hidden="true"></div>
+
+  <main class="landing__ui">
+    <header class="landing__brand">
+      <span class="landing__mark" aria-hidden="true">
+        <svg viewBox="0 0 132 52" fill="none">
+          <defs>
+            <linearGradient id="landing-mark-line" x1="4" y1="48" x2="128" y2="6" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#3b82f6" stop-opacity="0.12" />
+              <stop offset="1" stop-color="#93c5fd" stop-opacity="0.95" />
+            </linearGradient>
+          </defs>
+          <path d="M4 48C36 36 74 20 126 8" stroke="url(#landing-mark-line)" stroke-width="2.4" stroke-linecap="round" />
+          <path d="M22 51C50 42 84 28 120 19" stroke="#60a5fa" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" />
+          <path d="M44 52C66 46 92 34 112 30" stroke="#3b82f6" stroke-opacity="0.38" stroke-width="1.8" stroke-linecap="round" />
+          <circle cx="126" cy="8" r="3" fill="#dbeafe" />
+          <circle cx="120" cy="19" r="2.2" fill="#93c5fd" />
+          <circle cx="112" cy="30" r="1.8" fill="#60a5fa" fill-opacity="0.8" />
+        </svg>
+      </span>
+      <h1 class="landing__title">教资面试陪跑</h1>
+      <p class="landing__subtitle"><span>真题训练 · 试讲模拟 · AI 评分</span></p>
+    </header>
+
+    <div class="landing__cta">
+      <a class="landing__start" href="home.html" id="btn-start">开始学习</a>
+      <a class="landing__intro" href="product.html" id="btn-product">产品介绍</a>
+    </div>
+  </main>
+
+  <nav class="landing__nav" aria-label="快捷入口">
+    <a class="landing__nav-item" href="structured-hub.html">结构化</a>
+    <a class="landing__nav-item" href="select.html?mode=math">数学试讲</a>
+    <a class="landing__nav-item" href="records.html">练习记录</a>
+  </nav>
+
+  <noscript>
+    <p class="landing__noscript">未启用 JavaScript：<a href="home.html">直接进入学习室</a></p>
+  </noscript>
+
+  <script src="js/pwa.js"></script>
+</body>
+</html>

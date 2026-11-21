@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>学习室 · 教资面试陪跑</title>
+  <link rel="stylesheet" href="assets/css/app.css" />
+  <script src="assets/vendor/tailwind-play.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <!-- PWA：可安装 + 离线（manifest / 图标；Service Worker 在 js/pwa.js 注册） -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <meta name="application-name" content="结构化面试 · 教资面试陪跑" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="教资面试陪跑" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+</head>
+<body class="ocean-home min-h-screen bg-slate-50 pb-10">
+  <!-- 首页海洋背景：纯装饰层，不接收点击，动效只改 transform / opacity -->
+  <div class="ocean-scene" aria-hidden="true">
+    <span class="ocean-glow ocean-glow--a"></span>
+    <span class="ocean-glow ocean-glow--b"></span>
+    <span class="ocean-glow ocean-glow--c"></span>
+    <span class="ocean-wave ocean-wave--3"></span>
+    <span class="ocean-wave ocean-wave--2"></span>
+    <span class="ocean-wave ocean-wave--1"></span>
+    <span class="ocean-bubble" style="--x: 6%; --size: 14px; --rise: 40s; --delay: -4s; --drift: 20px; --peak: 0.38;"></span>
+    <span class="ocean-bubble" style="--x: 17%; --size: 8px; --rise: 29s; --delay: -16s; --drift: -14px; --peak: 0.32;"></span>
+    <span class="ocean-bubble" style="--x: 29%; --size: 22px; --rise: 52s; --delay: -9s; --drift: 16px; --peak: 0.3;"></span>
+    <span class="ocean-bubble" style="--x: 41%; --size: 10px; --rise: 34s; --delay: -24s; --drift: -18px; --peak: 0.36;"></span>
+    <span class="ocean-bubble" style="--x: 55%; --size: 17px; --rise: 46s; --delay: -2s; --drift: 12px; --peak: 0.28;"></span>
+    <span class="ocean-bubble" style="--x: 66%; --size: 7px; --rise: 26s; --delay: -13s; --drift: -10px; --peak: 0.4;"></span>
+    <span class="ocean-bubble" style="--x: 76%; --size: 26px; --rise: 58s; --delay: -30s; --drift: 22px; --peak: 0.26;"></span>
+    <span class="ocean-bubble" style="--x: 87%; --size: 12px; --rise: 37s; --delay: -6s; --drift: -16px; --peak: 0.34;"></span>
+    <span class="ocean-bubble" style="--x: 94%; --size: 9px; --rise: 31s; --delay: -20s; --drift: 14px; --peak: 0.3;"></span>
+  </div>
+
+  <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3">
+      <a href="home.html" class="flex min-w-0 items-center gap-2">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-600 text-base font-bold text-white">教</span>
+        <span class="min-w-0">
+          <span class="block truncate text-sm font-bold text-slate-900">教资面试陪跑</span>
+          <span class="block text-[11px] text-slate-500">结构化 · 初中 &amp; 高中数学试讲</span>
+        </span>
+      </a>
+      <div class="ml-auto flex items-center gap-2">
+        <button type="button" data-open-settings class="tap-soft grid h-10 w-10 place-items-center rounded-xl border border-slate-200 text-slate-600" aria-label="AI 设置">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3.2" />
+            <path d="M12 3.2v2.1M12 18.7v2.1M3.2 12h2.1M18.7 12h2.1M5.6 5.6l1.5 1.5M16.9 16.9l1.5 1.5M18.4 5.6l-1.5 1.5M7.1 16.9l-1.5 1.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-4 pt-5">
+    <section class="rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 px-5 py-6 text-white shadow-sm">
+      <p class="text-[11px] font-semibold tracking-wide text-white/70">数学 · 教资面试</p>
+      <h1 class="mt-1 text-xl font-bold leading-snug">先练结构，再练讲台</h1>
+      <p class="mt-2 text-sm leading-relaxed text-white/85">
+        结构化问答按题型给模板和评分维度；试讲按 10 分钟流程给板书与环节。录音、计时、评分都在本机完成。
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-white/80">
+        <span class="rounded-full bg-white/15 px-2.5 py-1">30+ 道结构真题</span>
+        <span class="rounded-full bg-white/15 px-2.5 py-1">初中 12 题 + 高中 12 题</span>
+        <span class="rounded-full bg-white/15 px-2.5 py-1">AI 可选 · 本机降级</span>
+      </div>
+    </section>
+
+    <section class="mt-4 grid gap-3">
+      <a href="structured-hub.html" class="lift-card flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm active:scale-[0.99]">
+        <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-xl">🗣️</span>
+        <span class="min-w-0 flex-1">
+          <span class="block text-base font-bold text-slate-900">结构化面试</span>
+          <span class="mt-0.5 block text-xs leading-relaxed text-slate-500">五大题型 · 模板 / 刷题分开 · 2 分钟限时 · 六维评分</span>
+        </span>
+        <span class="shrink-0 text-slate-300">›</span>
+      </a>
+
+      <a href="select.html?mode=math" class="lift-card flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm active:scale-[0.99]">
+        <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-50 text-xl">📐</span>
+        <span class="min-w-0 flex-1">
+          <span class="block text-base font-bold text-slate-900">数学试讲</span>
+          <span class="mt-0.5 block text-xs leading-relaxed text-slate-500">初中 / 高中各 12 题 · 代数 / 几何 / 统计 · 10 分钟 · 八维评分</span>
+        </span>
+        <span class="shrink-0 text-slate-300">›</span>
+      </a>
+    </section>
+
+    <nav class="mt-3 grid grid-cols-2 gap-2">
+      <a href="records.html" class="lift-card rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center active:bg-slate-50">
+        <span class="block text-xs font-bold text-slate-900">练习记录</span>
+        <span class="mt-0.5 block text-[10px] text-slate-400">统计 · 筛选 · 删除</span>
+      </a>
+      <a href="videos.html" class="lift-card rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center active:bg-slate-50">
+        <span class="block text-xs font-bold text-slate-900">示范视频</span>
+        <span class="mt-0.5 block text-[10px] text-slate-400">结构 / 试讲 / 礼仪</span>
+      </a>
+    </nav>
+
+    <section id="resume-card" class="mt-4 hidden">
+      <a id="resume-link" href="home.html" class="lift-card flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 transition active:bg-emerald-100">
+        <span class="min-w-0 flex-1">
+          <span class="block text-[11px] font-semibold text-emerald-700">继续上次练习</span>
+          <span id="resume-title" class="mt-0.5 block truncate text-sm font-bold text-slate-900">…</span>
+          <span id="resume-meta" class="mt-0.5 block text-[11px] text-emerald-700/80"></span>
+        </span>
+        <span class="shrink-0 text-emerald-400">›</span>
+      </a>
+    </section>
+
+    <section class="mt-6">
+      <h2 class="px-1 text-sm font-bold text-slate-900">今天怎么练</h2>
+      <ol class="mt-2 space-y-2">
+        <li class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs leading-relaxed text-slate-600">
+          <b class="text-slate-900">1. 先看模板</b>：在题型页点「查看模板」，按题型读一遍框架与示范，别背整段稿子。
+        </li>
+        <li class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs leading-relaxed text-slate-600">
+          <b class="text-slate-900">2. 限时开口</b>：结构化 2 分钟、试讲 10 分钟，用计时器逼自己说完整。
+        </li>
+        <li class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs leading-relaxed text-slate-600">
+          <b class="text-slate-900">3. 对照复盘</b>：看评分维度和要点覆盖，只改一个最影响分数的问题。
+        </li>
+      </ol>
+    </section>
+
+    <section class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-[11px] leading-relaxed text-amber-800">
+      评分默认使用本机规则（关键词覆盖、结构标志词、篇幅），未接入 AI 时会明确标注。可在右上角齿轮里填写自己的 API Key，密钥仅保存在本机浏览器。
+    </section>
+
+    <footer class="mt-8 text-center text-[11px] leading-relaxed text-slate-400">
+      个人练习用工具，题目与模板整理自公开资料，不代表官方标准。
+    </footer>
+  </main>
+
+  <script type="module" src="js/home.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

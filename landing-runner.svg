@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1168" viewBox="40 70 570 650" fill="none" role="img" aria-label="奔跑的少年：白色短袖校服、深蓝短裤、白蓝跑鞋">
+  <title>奔跑的少年</title>
+  <defs>
+    <!-- 校服短袖：正面提亮，下摆压暗 -->
+    <linearGradient id="tee" x1="400" y1="230" x2="330" y2="452" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" />
+      <stop offset="0.55" stop-color="#e9f1fc" />
+      <stop offset="1" stop-color="#bfd1ea" />
+    </linearGradient>
+    <linearGradient id="teeBack" x1="286" y1="268" x2="336" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b6c8e0" />
+      <stop offset="1" stop-color="#d3e0f0" />
+    </linearGradient>
+    <!-- 前侧腿：受光面 -->
+    <linearGradient id="legFront" x1="330" y1="460" x2="452" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbdfc0" />
+      <stop offset="0.55" stop-color="#f3d0ac" />
+      <stop offset="1" stop-color="#dda87e" />
+    </linearGradient>
+    <!-- 后侧肢体：压暗一档，做出前后层次 -->
+    <linearGradient id="legBack" x1="302" y1="440" x2="156" y2="588" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d7a87e" />
+      <stop offset="1" stop-color="#b9825c" />
+    </linearGradient>
+    <linearGradient id="armBack" x1="346" y1="270" x2="206" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d2a077" />
+      <stop offset="1" stop-color="#b87f5a" />
+    </linearGradient>
+    <!-- 深蓝短裤 -->
+    <linearGradient id="shorts" x1="254" y1="404" x2="366" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22375a" />
+      <stop offset="0.45" stop-color="#14213a" />
+      <stop offset="1" stop-color="#0a1220" />
+    </linearGradient>
+    <linearGradient id="hair" x1="392" y1="84" x2="410" y2="176" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#33405c" />
+      <stop offset="0.45" stop-color="#161d2b" />
+      <stop offset="1" stop-color="#080b12" />
+    </linearGradient>
+    <radialGradient id="skinHead" cx="0.42" cy="0.34" r="0.78">
+      <stop stop-color="#f9dfc6" />
+      <stop offset="0.62" stop-color="#eec6a3" />
+      <stop offset="1" stop-color="#d3a179" />
+    </radialGradient>
+    <linearGradient id="shoe" x1="40" y1="-26" x2="40" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" />
+      <stop offset="0.58" stop-color="#eef4fc" />
+      <stop offset="1" stop-color="#bfcfe2" />
+    </linearGradient>
+    <!-- 跑鞋：踝关节为原点，鞋尖朝 +x -->
+    <g id="shoeShape">
+      <path d="M-18,-16 Q-26,6 -4,14 L36,18 Q74,20 100,4 Q110,-8 94,-16 L46,-23 Q6,-26 -18,-16 Z"
+            fill="url(#shoe)" stroke="#0b1220" stroke-width="4.5" stroke-linejoin="round" />
+      <path d="M-2,10 Q40,17 98,2 L96,8 Q40,23 -2,16 Z" fill="#c8d6e8" opacity="0.9" />
+      <path d="M24,-17 Q52,-12 78,-4" stroke="#1d4ed8" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.9" />
+      <path d="M-8,-9 Q10,-16 30,-16" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.85" fill="none" />
+      <path d="M52,-20 L58,-8 M64,-18 L70,-6 M76,-15 L82,-4" stroke="#93a7c0" stroke-width="3" stroke-linecap="round" opacity="0.75" fill="none" />
+    </g>
+    <!-- 后侧肢体的受光面 / 前侧肢体的暗面：三层描边做出圆润体积 -->
+    <linearGradient id="skinBackHi" x1="300" y1="430" x2="150" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ecc39b" />
+      <stop offset="1" stop-color="#d5a279" />
+    </linearGradient>
+    <linearGradient id="legFrontDark" x1="360" y1="470" x2="450" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c08a5f" />
+      <stop offset="1" stop-color="#a56d44" />
+    </linearGradient>
+    <linearGradient id="teeHi" x1="410" y1="280" x2="344" y2="446" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" />
+      <stop offset="1" stop-color="#dbe8fa" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. 后侧腿：拖在身后，脚尖上翘 -->
+  <path d="M302,440 L204,514 L156,588" stroke="#0b1220" stroke-width="64" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M302,440 L204,514 L156,588" stroke="url(#legBack)" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M302,440 L204,514 L156,588" stroke="url(#skinBackHi)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(-4,-7)" opacity="0.85" />
+  <use href="#shoeShape" transform="translate(154,586) rotate(158)" />
+
+  <!-- 2. 后侧手臂：向后摆 -->
+  <path d="M344,272 L262,352 L206,394" stroke="#0b1220" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M344,272 L262,352 L206,394" stroke="url(#armBack)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M344,270 L300,302" stroke="#0b1220" stroke-width="56" stroke-linecap="round" fill="none" />
+  <path d="M344,270 L300,302" stroke="#cfdcee" stroke-width="44" stroke-linecap="round" fill="none" />
+  <circle cx="198" cy="404" r="17" fill="#c08a62" stroke="#0b1220" stroke-width="4" />
+
+  <!-- 3. 后侧大腿短裤 -->
+  <path d="M300,442 L250,476" stroke="url(#shorts)" stroke-width="58" stroke-linecap="round" fill="none" />
+
+  <!-- 4. 前侧腿 -->
+  <path d="M312,442 L418,552 L446,690" stroke="#0b1220" stroke-width="66" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M312,442 L418,552 L446,690" stroke="url(#legFront)" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M312,442 L418,552 L446,690" stroke="url(#legFrontDark)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(10,4)" opacity="0.5" />
+  <path d="M312,442 L418,552 L446,690" stroke="#ffe7cc" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(-6,-7)" opacity="0.7" />
+  <use href="#shoeShape" transform="translate(446,688) rotate(-6)" />
+
+  <!-- 5. 短裤主体 -->
+  <path d="M264,404 C296,390 332,412 344,452 C353,488 334,512 302,514 C270,516 252,489 252,458 C252,436 254,412 264,404 Z"
+        fill="url(#shorts)" stroke="#0b1220" stroke-width="4.5" stroke-linejoin="round" />
+  <path d="M318,452 L358,510" stroke="url(#shorts)" stroke-width="68" stroke-linecap="round" fill="none" />
+  <path d="M300,414 C314,412 326,420 334,434" stroke="#3d5b88" stroke-width="4" stroke-linecap="round" opacity="0.65" fill="none" />
+
+  <!-- 6. 校服短袖 -->
+  <path d="M338,238 C372,222 406,242 426,278 L335,449 C303,462 280,446 269,419 C287,356 311,294 338,238 Z"
+        fill="url(#tee)" stroke="#0b1220" stroke-width="5" stroke-linejoin="round" />
+  <path d="M338,238 C311,294 287,356 269,419 C280,446 303,462 335,449 L318,404 Z"
+        fill="url(#teeBack)" opacity="0.6" />
+  <path d="M404,296 C400,352 378,404 348,440" stroke="url(#teeHi)" stroke-width="18" stroke-linecap="round" fill="none" opacity="0.75" />
+  <path d="M352,246 Q372,236 392,252" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round" opacity="0.5" fill="none" />
+  <path d="M298,352 Q322,376 352,368" stroke="#a3b8d2" stroke-width="4" stroke-linecap="round" opacity="0.5" fill="none" />
+  <path d="M330,436 Q352,452 368,430" stroke="#8fa6c2" stroke-width="4" stroke-linecap="round" opacity="0.4" fill="none" />
+
+  <!-- 7. 前侧手臂：向前摆，拳头抬到胸高 -->
+  <path d="M410,276 L500,352 L574,300" stroke="#0b1220" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M410,276 L500,352 L574,300" stroke="#eec49e" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M410,276 L500,352 L574,300" stroke="#ffdfbe" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(-4,-7)" opacity="0.8" />
+  <path d="M406,266 L450,312" stroke="#0b1220" stroke-width="66" stroke-linecap="round" fill="none" />
+  <path d="M406,266 L450,312" stroke="url(#tee)" stroke-width="54" stroke-linecap="round" fill="none" />
+  <path d="M446,306 Q458,318 454,332" stroke="#a9bdd6" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.55" />
+  <circle cx="580" cy="294" r="19" fill="#f4d0ab" stroke="#0b1220" stroke-width="4.5" />
+  <path d="M572,286 Q580,282 588,288" stroke="#ffe2c4" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.75" />
+
+  <!-- 8. 脖子与头 -->
+  <path d="M388,196 L382,246" stroke="#0b1220" stroke-width="42" stroke-linecap="round" fill="none" />
+  <path d="M388,196 L382,246" stroke="#e8bd99" stroke-width="32" stroke-linecap="round" fill="none" />
+  <path d="M382,200 L378,238" stroke="#fbe0c2" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.7" />
+  <path d="M366,196 Q384,214 402,200" stroke="#c68f68" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.32" />
+  <ellipse cx="390" cy="152" rx="45" ry="49" fill="url(#skinHead)" stroke="#0b1220" stroke-width="5" />
+  <ellipse cx="357" cy="162" rx="9" ry="12" fill="#e2b48d" stroke="#0b1220" stroke-width="3" />
+  <path d="M355,157 Q361,161 356,169" stroke="#c38f68" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <path d="M424,144 Q436,156 423,167 Q429,170 433,166" stroke="#0b1220" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5" />
+  <ellipse cx="412" cy="145" rx="5.2" ry="6.4" fill="#141a24" />
+  <path d="M400,130 Q412,124 424,129" stroke="#141a24" stroke-width="4.6" stroke-linecap="round" fill="none" />
+  <path d="M405,176 Q415,179 423,173" stroke="#a9714b" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.6" />
+  <path d="M362,178 Q382,198 412,188" stroke="#a9714b" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.2" />
+  <path d="M346,172 C336,112 364,78 398,78 C436,78 458,104 458,136 C458,152 446,158 440,150 C433,131 420,127 401,133 C379,140 365,154 361,178 Z"
+        fill="url(#hair)" stroke="#0b1220" stroke-width="4.5" stroke-linejoin="round" />
+  <path d="M344,164 C338,148 340,132 348,122 C346,138 348,152 352,160 Z" fill="#0d1219" />
+  <path d="M432,120 C444,124 450,134 450,146 C446,136 440,128 432,120 Z" fill="#0d1219" opacity="0.9" />
+  <path d="M374,96 Q400,82 428,96" stroke="#46577a" stroke-width="4" stroke-linecap="round" opacity="0.45" fill="none" />
+  <path d="M412,108 Q430,118 440,136" stroke="#46577a" stroke-width="3.5" stroke-linecap="round" opacity="0.3" fill="none" />
+
+  <!-- 9. 蓝色边缘光：把人物接进赛道的冷光里 -->
+  <path d="M452,132 C450,104 432,86 406,82" stroke="#bfdbfe" stroke-width="3.5" stroke-linecap="round" opacity="0.28" fill="none" />
+  <path d="M424,282 L337,445" stroke="#93c5fd" stroke-width="4.5" stroke-linecap="round" opacity="0.42" fill="none" />
+  <path d="M420,556 L446,686" stroke="#93c5fd" stroke-width="4.5" stroke-linecap="round" opacity="0.36" fill="none" />
+  <path d="M566,296 Q584,290 590,302" stroke="#93c5fd" stroke-width="4" stroke-linecap="round" opacity="0.35" fill="none" />
+  <path d="M300,444 L206,510 L146,458" stroke="#60a5fa" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.26" fill="none" />
+</svg>

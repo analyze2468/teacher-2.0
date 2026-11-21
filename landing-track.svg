@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1280" width="720" height="1280" role="img" aria-label="夜色跑道与蓝色流光">
+  <!-- 首页静态兜底图：与 R3F 场景同构（跑道 + 蓝色光轨，无人物），3D 不可用时顶上 -->
+  <defs>
+    <linearGradient id="lt-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05070d" />
+      <stop offset="0.42" stop-color="#060a13" />
+      <stop offset="0.55" stop-color="#0c1830" />
+      <stop offset="0.62" stop-color="#08101f" />
+      <stop offset="1" stop-color="#04060b" />
+    </linearGradient>
+    <radialGradient id="lt-haze" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#93c5fd" stop-opacity="0.5" />
+      <stop offset="0.4" stop-color="#2563eb" stop-opacity="0.2" />
+      <stop offset="1" stop-color="#1d4ed8" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="lt-lane" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e1a2e" />
+      <stop offset="1" stop-color="#060a12" />
+    </linearGradient>
+    <linearGradient id="lt-streak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#93c5fd" stop-opacity="0" />
+      <stop offset="0.45" stop-color="#93c5fd" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="1280" fill="url(#lt-sky)" />
+  <ellipse cx="360" cy="700" rx="330" ry="118" fill="url(#lt-haze)" />
+
+  <!-- 跑道：透视梯形 -->
+  <path d="M292 700 L428 700 L700 1280 L20 1280 Z" fill="url(#lt-lane)" />
+  <path d="M292 700 L20 1280" stroke="#3b82f6" stroke-opacity="0.75" stroke-width="3" />
+  <path d="M428 700 L700 1280" stroke="#3b82f6" stroke-opacity="0.75" stroke-width="3" />
+  <path d="M322 700 L120 1280" stroke="#3b82f6" stroke-opacity="0.2" stroke-width="2" />
+  <path d="M398 700 L600 1280" stroke="#3b82f6" stroke-opacity="0.2" stroke-width="2" />
+
+  <!-- 中心虚线：越靠近镜头越长 -->
+  <g stroke="#cbd5e1" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round">
+    <path d="M360 704 L360 714" />
+    <path d="M360 736 L360 758" />
+    <path d="M360 794 L360 836" />
+    <path d="M360 878 L360 946" />
+    <path d="M360 998 L360 1104" />
+    <path d="M360 1164 L360 1276" />
+  </g>
+
+  <!-- 两侧光轨 -->
+  <g stroke="url(#lt-streak)" stroke-linecap="round" fill="none">
+    <path d="M250 1180 L262 880" stroke-width="4" />
+    <path d="M470 1210 L455 900" stroke-width="3" />
+    <path d="M150 1270 L170 940" stroke-width="3" />
+    <path d="M580 1260 L560 960" stroke-width="2" />
+    <path d="M300 1120 L306 930" stroke-width="2" />
+  </g>
+</svg>

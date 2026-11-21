@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>shot</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+      #f {
+        display: block;
+        border: 0;
+        background: #05070d;
+      }
+      #wrap {
+        transform-origin: top left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap"><iframe id="f" title="shot"></iframe></div>
+    <script>
+      var q = new URLSearchParams(location.search);
+      var w = parseInt(q.get('w') || '390', 10);
+      var h = parseInt(q.get('h') || '844', 10);
+      var s = parseFloat(q.get('s') || '1');
+      var noAnim = q.get('anim') === '0';
+      var f = document.getElementById('f');
+      var wrap = document.getElementById('wrap');
+      f.style.width = w + 'px';
+      f.style.height = h + 'px';
+      wrap.style.transform = 'scale(' + s + ')';
+      f.addEventListener('load', function () {
+        try {
+          var iw = f.contentWindow;
+          var d = f.contentDocument;
+          /* 入场动效（stage 的 scale(1.03) 等）会让 getBoundingClientRect 偏大 3%，
+             测量时统一关掉，只量布局值 */
+          if (noAnim) {
+            var st = d.createElement('style');
+            st.textContent = '*, *::before, *::after { animation: none !important; transition: none !important; }';
+            d.head.appendChild(st);
+          }
+          var vw = iw.innerWidth;
+          var vh = iw.innerHeight;
+          var edge = d.querySelector('.landing__hero-edge');
+          var poster = d.querySelector('.landing__poster');
+          var r = edge.getBoundingClientRect();
+          var lw = edge.offsetWidth;
+          var lh = edge.offsetHeight;
+          var lo = edge.offsetLeft;
+          var lt = edge.offsetTop;
+          var pw = poster.clientWidth;
+          var ph = poster.clientHeight;
+          var hero = d.querySelector('.landing__hero').getBoundingClientRect();
+          var start = d.getElementById('btn-start');
+          var intro = d.getElementById('btn-product');
+          var sr = start.getBoundingClientRect();
+          var ir = intro.getBoundingClientRect();
+          function hit(el, rr) {
+            var top = d.elementFromPoint(rr.left + rr.width / 2, rr.top + rr.height / 2);
+            return top && (top === el || el.contains(top)) ? 'ok' : 'BLOCKED:' + (top ? top.className || top.tagName : 'null');
+          }
+          var ox = lo < -0.5 || lo + lw > pw + 0.5;
+          var oy = lt < -0.5 || lt + lh > ph + 0.5;
+          var tr = d.querySelector('.landing__title').getBoundingClientRect();
+          var cr = d.querySelector('.landing__cta').getBoundingClientRect();
+          document.title = [
+            'vp=' + vw + 'x' + vh,
+            'poster=' + pw + 'x' + ph,
+            'edgeBox=' + lo + ',' + lt + ',' + lw + ',' + lh,
+            'layoutOff=' + Math.round(lo + lw / 2 - pw / 2) + ',' + Math.round(lt + lh / 2 - ph / 2),
+            'rectOff=' + Math.round(r.left + r.width / 2 - vw / 2) + ',' + Math.round(r.top + r.height / 2 - vh / 2),
+            'ratio=' + (lw / lh).toFixed(3) + '/' + (hero.width / hero.height).toFixed(3),
+            'overflow=' + (ox ? 'X' : '-') + (oy ? 'Y' : '-'),
+            'btnStart=' + Math.round(sr.width) + 'x' + Math.round(sr.height) + ':' + hit(start, sr),
+            'btnIntro=' + Math.round(ir.width) + 'x' + Math.round(ir.height) + ':' + hit(intro, ir),
+            'uiZ=' + iw.getComputedStyle(d.querySelector('.landing__ui')).zIndex,
+            'stageZ=' + iw.getComputedStyle(d.querySelector('.landing__stage')).zIndex,
+            'titleB=' + Math.round(tr.bottom),
+            'cta=' + Math.round(cr.top) + '-' + Math.round(cr.bottom)
+          ].join(' | ');
+        } catch (e) {
+          document.title = 'err ' + e.message;
+        }
+      });
+      f.src = (q.get('src') || 'index.html') + (noAnim ? '?anim=0' : '');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简单卡片</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f2fc;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Microsoft YaHei", Helvetica, Arial, sans-serif;
+    color: #1f2933;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 360px;
+    background-color: #ffffff;
+    border: 1px solid #d6e6f5;
+    border-radius: 12px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 16px rgba(31, 41, 51, 0.06);
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #616e7c;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="card-title">简洁卡片</h1>
+    <p class="card-text">这是一行简短的说明文字，用于展示卡片的内容。</p>
+  </div>
+</body>
+</html>
